@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./tinymce.min.js"></script>
+</head>
+<body>
+<div>
+	<div id="tinymce"></div>
+</div>
+<script>
+	 tinymce.init({
+    selector: '#tinymce',
+    language: 'zh_CN', // 需要在官网自己下载一个全局的langs包。同时我提供的powerpaste本身自带一个langs包里面含中文，所以可以100%支持中文。
+    powerpaste_word_import: 'propmt',// 参数可以是propmt, merge, clear，效果自行切换对比
+    powerpaste_html_import: 'propmt',// propmt, merge, clear
+    powerpaste_allow_local_images: true,
+    paste_data_images: true,
+    images_upload_handler: function (blobInfo, success, failure) {
+      // 这个函数主要处理word中的图片，并自动完成上传；
+      // ajaxUpload是自己定义的一个函数；在回调中，记得调用success函数，传入上传好的图片地址；
+      // blobInfo.blob() 得到图片的file对象；
+      // ajaxUpload(blobInfo.blob()).then((data) => {
+      //    // 上传成功后，调用success函数传入图片地址
+      //    success(data.uploadedImageUrl)
+      //  })
+        success( 'https://www.xiyoukeji.com/images/logo_xs.gif')
+     },
+    // tinymce的其他配置参数
+         plugins: 'powerpaste  print preview searchreplace autolink directionality visualblocks  fullscreen image link media  code codesample table charmap hr pagebreak nonbreaking  insertdatetime advlist lists wordcount imagetools     autoresize   ',
+         toolbar: 'code undo redo restoredraft  | forecolor backcolor bold italic underline strikethrough link  | alignleft aligncenter alignright alignjustify outdent indent | \
+    styleselect formatselect fontselect fontsizeselect | bullist numlist | blockquote subscript superscript removeformat | \
+    table image media charmap  hr pagebreak insertdatetime print preview | fullscreen |     ',
+		 menubar:false,
+         height: 650, //编辑器高度
+         min_height: 400,
+         fontsize_formats: '12px 14px 16px 18px 24px 36px 48px 56px 72px',
+         font_formats: '微软雅黑=Microsoft YaHei,Helvetica Neue,PingFang SC,sans-serif;苹果苹方=PingFang SC,Microsoft YaHei,sans-serif;宋体=simsun,serif;仿宋体=FangSong,serif;黑体=SimHei,sans-serif;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;',
+
+
+         //自定义文件选择器的回调内容
+         // file_picker_callback: function (callback, value, meta) {
+         //     if (meta.filetype === 'file') {
+         //         callback('https://www.baidu.com/img/bd_logo1.png', { text: 'My text' });
+         //     }
+         //     if (meta.filetype === 'image') {
+         //         callback('https://www.baidu.com/img/bd_logo1.png', { alt: 'My alt text' });
+         //     }
+         //     if (meta.filetype === 'media') {
+         //         callback('movie.mp4', { source2: 'alt.ogg', poster: 'https://www.baidu.com/img/bd_logo1.png' });
+         //     }
+         // },
+  })
+</script>
+</body>
+</html>
