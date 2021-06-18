@@ -2,6 +2,22 @@ import Vue from 'vue'
 import router from '@/router'
 import {  resetRoute } from '@/router'
 import store from '@/store'
+
+//发送给后端 保存当前用户登录时间 用于统计人数
+export function sendMsgDateHand(){
+  var userMessage = store.state.user.userMessage
+  // var mobile = userInfo.telphone
+  // var orgId = userInfo.schoolId
+  // if(mobile&&orgId){
+  //   var params = {
+  //     mobile,
+  //     orgId
+  //   }
+    // sendMsgDate(params)
+  // }
+
+}
+
 /**
  * 获取uuid
  */
@@ -55,6 +71,7 @@ export function clearLoginInfo () {
   Vue.cookie.delete('token')
   router.options.isAddDynamicMenuRoutes = false
   store.commit('common/updateMainTabs',[])
+  store.commit('user/deleUser',[])
   resetRoute()
 }
 

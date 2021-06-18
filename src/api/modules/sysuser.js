@@ -18,7 +18,7 @@ export function role (params) {
         params: requestParam(params,'get')
     })
 }
-
+//获取角色管理列表
 export function roleList (params) {
     return request({
         url:`${baseUrl}/sys/user/roleList`,

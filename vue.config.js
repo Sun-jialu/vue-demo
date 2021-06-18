@@ -34,31 +34,6 @@ module.exports = {
                     '^/dict': '/dict'
                 }
             },
-
-            '/sam': {
-                target: 'http://192.168.115.53:8001', /* 目标代理服务器地址http://192.168.115.54:8081 http://192.168.115.53:8081*/
-                changeOrigin: true,/* 允许跨域 */
-                secure: false,//不校验https  ssl
-                pathRewrite: {
-                    '^/sam': '/sam'
-                }
-            },
-            '/eam': {
-                target: 'http://192.168.115.55:8081', /* 目标代理服务器地址http://192.168.115.54:8081 */
-                changeOrigin: true,/* 允许跨域 */
-                secure: false,//不校验https  ssl
-                pathRewrite: {
-                    '^/eam': '/eam'
-                }
-            },
-            '/hsm': {
-                target: 'http://192.168.115.131:8081', /* 目标代理服务器地址http://192.168.115.54:8081 */
-                changeOrigin: true,/* 允许跨域 */
-                secure: false,//不校验https  ssl
-                pathRewrite: {
-                    '^/hsm': '/hsm'
-                }
-            },
         },
     },
     //修改插件

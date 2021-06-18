@@ -21,43 +21,72 @@ const menuList = [{
 ]
 export default [
     // user login
+    //登录获取菜单
     {
         url: '/sys/menu/nav',
         type: 'get',
         response: config => {
-            return {
-                "msg": "success",
-                "menuList": [
-                    { "menuId": 11, "parentId": 0, "parentName": null, "name": "组件", "url": null, "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
-                    { "menuId": 12, "parentId": 11, "parentName": null, "name": "导出excel", "url": 'com-demo/excel', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
-                    { "menuId": 12, "parentId": 11, "parentName": null, "name": "水印", "url": 'com-demo/watermark', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
-                    { "menuId": 12, "parentId": 11, "parentName": null, "name": "导出excel方法二", "url": 'com-demo/excelWeb', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
-                    { "menuId": 13, "parentId": 11, "parentName": null, "name": "tinymce", "url": 'com-demo/tinymce', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
-                    { "menuId": 16, "parentId": 11, "parentName": null, "name": "日历", "url": 'com-demo/calener', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
-                    { "menuId": 16, "parentId": 11, "parentName": null, "name": "课表", "url": 'com-demo/timeTable', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
-                    { "menuId": 16, "parentId": 11, "parentName": null, "name": "步骤条", "url": 'com-demo/steps', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
-                    { "menuId": 16, "parentId": 11, "parentName": null, "name": "视频", "url": 'com-demo/video', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
-                    { "menuId": 16, "parentId": 11, "parentName": null, "name": "地图", "url": 'com-demo/map', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
-                    { "menuId": 16, "parentId": 11, "parentName": null, "name": "系统骨架图", "url": 'com-demo/flow', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
-                    { "menuId": 1, "parentId": 0, "parentName": null, "name": "系统管理", "url": null, "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
-                    { "menuId": 2, "parentId": 1, "parentName": "系统管理", "name": "管理员列表", "url": "sysMan/sysuser", "perms": null, "type": 1, "icon": "admin", "orderNum": 1, "open": null, "list": null },
-                    { "menuId": 3, "parentId": 1, "parentName": "系统管理", "name": "角色管理", "url": "sysMan/role", "perms": null, "type": 1, "icon": "role", "orderNum": 2, "open": null, "list": null },
-                    { "menuId": 4, "parentId": 1, "parentName": "系统管理", "name": "菜单管理", "url": "sysMan/menu", "perms": null, "type": 1, "icon": "menu", "orderNum": 3, "open": null, "list": null },
-                    { "menuId": 5, "parentId": 1, "parentName": "系统管理", "name": "iframe", "url": "http://www.baidu.com", "perms": null, "type": 1, "icon": "sql", "orderNum": 4, "open": null, "list": null },
-                    { "menuId": 20, "parentId": 0, "parentName": null, "name": "组件1", "url": null, "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
-                    { "menuId": 201, "parentId": 20, "parentName": null, "name": "图片裁剪1", "url": 'com-demo1/corp1', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
-                    // { "menuId": 202, "parentId": 20, "parentName": null, "name": "图片裁剪2", "url": 'com-demo1/corp2', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
-                ],
-                "rsCode": 'AAAAAAA',
-                "permissions": ["sys:schedule:info", "sys:menu:update", "sys:menu:delete", "sys:config:info", "sys:menu:list", "sys:config:save", "sys:config:update", "sys:schedule:resume", "sys:user:delete", "sys:config:list", "sys:user:update", "sys:role:list", "sys:menu:info", "sys:menu:select", "sys:schedule:update", "sys:schedule:save", "sys:role:select", "sys:user:list", "sys:menu:save", "sys:role:save", "sys:schedule:log", "sys:role:info", "sys:schedule:delete", "sys:role:update", "sys:schedule:list", "sys:user:info", "sys:schedule:run", "sys:config:delete", "sys:role:delete", "sys:user:save", "sys:schedule:pause", "sys:log:list", "sys:oss:all"]
+            console.log(config)
+            if (config.query.userType == 1) {
+                return {
+                    "msg": "success",
+                    "menuList": [
+                        { "menuId": 1, "parentId": 0, "parentName": null, "name": "系统管理", "url": null, "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 2, "parentId": 1, "parentName": "系统管理", "name": "管理员列表", "url": "sysMan/sysuser", "perms": null, "type": 1, "icon": "admin", "orderNum": 1, "open": null, "list": null },
+                        { "menuId": 3, "parentId": 1, "parentName": "系统管理", "name": "角色管理", "url": "sysMan/role", "perms": null, "type": 1, "icon": "role", "orderNum": 2, "open": null, "list": null },
+                        { "menuId": 4, "parentId": 1, "parentName": "系统管理", "name": "菜单管理", "url": "sysMan/menu", "perms": null, "type": 1, "icon": "menu", "orderNum": 3, "open": null, "list": null },
+                        { "menuId": 5, "parentId": 1, "parentName": "系统管理", "name": "iframe", "url": "http://www.baidu.com", "perms": null, "type": 1, "icon": "sql", "orderNum": 4, "open": null, "list": null },
+                        { "menuId": 11, "parentId": 0, "parentName": null, "name": "组件", "url": null, "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 12, "parentId": 11, "parentName": null, "name": "导出excel", "url": 'com-demo/excel', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 12, "parentId": 11, "parentName": null, "name": "水印", "url": 'com-demo/watermark', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 12, "parentId": 11, "parentName": null, "name": "导出excel方法二", "url": 'com-demo/excelWeb', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 13, "parentId": 11, "parentName": null, "name": "tinymce", "url": 'com-demo/tinymce', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 16, "parentId": 11, "parentName": null, "name": "日历", "url": 'com-demo/calener', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 16, "parentId": 11, "parentName": null, "name": "课表", "url": 'com-demo/timeTable', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 16, "parentId": 11, "parentName": null, "name": "步骤条", "url": 'com-demo/steps', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 16, "parentId": 11, "parentName": null, "name": "视频", "url": 'com-demo/video', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 16, "parentId": 11, "parentName": null, "name": "地图", "url": 'com-demo/map', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 16, "parentId": 11, "parentName": null, "name": "系统骨架图", "url": 'com-demo/flow', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 20, "parentId": 0, "parentName": null, "name": "组件1", "url": null, "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 201, "parentId": 20, "parentName": null, "name": "图片裁剪1", "url": 'com-demo1/corp1', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        // { "menuId": 202, "parentId": 20, "parentName": null, "name": "图片裁剪2", "url": 'com-demo1/corp2', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                    ],
+                    "rsCode": 'AAAAAAA',
+                    "permissions": ["sys:schedule:info", "sys:menu:update", "sys:menu:delete", "sys:config:info", "sys:menu:list", "sys:config:save", "sys:config:update", "sys:schedule:resume", "sys:user:delete", "sys:config:list", "sys:user:update", "sys:role:list", "sys:menu:info", "sys:menu:select", "sys:schedule:update", "sys:schedule:save", "sys:role:select", "sys:user:list", "sys:menu:save", "sys:role:save", "sys:schedule:log", "sys:role:info", "sys:schedule:delete", "sys:role:update", "sys:schedule:list", "sys:user:info", "sys:schedule:run", "sys:config:delete", "sys:role:delete", "sys:user:save", "sys:schedule:pause", "sys:log:list", "sys:oss:all"]
+                }
+            } else if (config.query.userType == 2) {
+                return {
+                    "msg": "success",
+                    "menuList": [
+                        { "menuId": 11, "parentId": 0, "parentName": null, "name": "组件", "url": null, "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 12, "parentId": 11, "parentName": null, "name": "导出excel", "url": 'com-demo/excel', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 12, "parentId": 11, "parentName": null, "name": "水印", "url": 'com-demo/watermark', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 12, "parentId": 11, "parentName": null, "name": "导出excel方法二", "url": 'com-demo/excelWeb', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 13, "parentId": 11, "parentName": null, "name": "tinymce", "url": 'com-demo/tinymce', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 16, "parentId": 11, "parentName": null, "name": "日历", "url": 'com-demo/calener', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 16, "parentId": 11, "parentName": null, "name": "课表", "url": 'com-demo/timeTable', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 16, "parentId": 11, "parentName": null, "name": "步骤条", "url": 'com-demo/steps', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 16, "parentId": 11, "parentName": null, "name": "视频", "url": 'com-demo/video', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 16, "parentId": 11, "parentName": null, "name": "地图", "url": 'com-demo/map', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 16, "parentId": 11, "parentName": null, "name": "系统骨架图", "url": 'com-demo/flow', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 20, "parentId": 0, "parentName": null, "name": "组件1", "url": null, "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 201, "parentId": 20, "parentName": null, "name": "图片裁剪1", "url": 'com-demo1/corp1', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                    ],
+                    "rsCode": 'AAAAAAA',
+                    "permissions": ["sys:schedule:info", "sys:menu:update", "sys:menu:delete", "sys:config:info", "sys:menu:list", "sys:config:save", "sys:config:update", "sys:schedule:resume", "sys:user:delete", "sys:config:list", "sys:user:update", "sys:role:list", "sys:menu:info", "sys:menu:select", "sys:schedule:update", "sys:schedule:save", "sys:role:select", "sys:user:list", "sys:menu:save", "sys:role:save", "sys:schedule:log", "sys:role:info", "sys:schedule:delete", "sys:role:update", "sys:schedule:list", "sys:user:info", "sys:schedule:run", "sys:config:delete", "sys:role:delete", "sys:user:save", "sys:schedule:pause", "sys:log:list", "sys:oss:all"]
+                }
             }
+
         }
     },
     {
         url: '/sys/menu/menuList',
         type: 'get',
         response: config => {
-            return menuList
+            return {
+                "rsCode": 'AAAAAAA',
+                menuList
+            }
         }
     },
 ]

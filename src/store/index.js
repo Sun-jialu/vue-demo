@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import getters from './getters'
-
+import createPersistedState from "vuex-persistedstate"
 Vue.use(Vuex)
 
 // https://webpack.js.org/guides/dependency-management/#requirecontext
@@ -16,10 +16,21 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
   modules[moduleName] = value.default
   return modules
 }, {})
-
+// console.log(123654456)
+// console.log(`window`, window)
 const store = new Vuex.Store({
-  modules,
-  getters
+
+  modules:{...modules},
+  getters,
+  plugins: [createPersistedState({
+    storage: window.sessionStorage,
+    // reducer(val) {
+    //   return {
+    //     // 只储存state中的user
+    //     user: val.user
+    //   }
+    // }
+  })]
 })
 
 export default store

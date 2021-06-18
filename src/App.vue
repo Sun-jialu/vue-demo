@@ -10,7 +10,8 @@ export default {
       // publicPath: process.env.BASE_URL
     };
   },
-  mounted() {}
+  created() {},
+  mounted() {},
 };
 </script>
 <style lang="scss">
@@ -29,31 +30,31 @@ body,
 .el-select {
   width: 100%;
 }
-.el-date-editor.el-input{
+.el-date-editor.el-input {
   width: 100% !important;
 }
 
 .el-table th {
-  background-color: #F5F7FA!important;
+  background-color: #f5f7fa !important;
 }
 .search-form--wrap {
-  .el-form-item{
+  .el-form-item {
     margin-bottom: 10px;
   }
-  .el-form-item--mini.el-form-item{
-     margin-bottom: 10px;
+  .el-form-item--mini.el-form-item {
+    margin-bottom: 10px;
   }
-  .el-form-item--small.el-form-item{
-     margin-bottom: 10px;
+  .el-form-item--small.el-form-item {
+    margin-bottom: 10px;
   }
 }
-.el-table__header{
-    width: 100% !important;
+.el-table__header {
+  width: 100% !important;
 }
-.el-table__body{
-    width: 100% !important;
+.el-table__body {
+  width: 100% !important;
 }
-.el-textarea .el-input__count{
+.el-textarea .el-input__count {
   line-height: 20px;
   height: 20px;
 }

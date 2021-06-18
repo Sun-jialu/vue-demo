@@ -35,7 +35,8 @@
                   </el-input>
                 </el-col>
                 <el-col :span="10" class="login-captcha">
-                  <img :src="captchaPath" @click="getCaptcha()" alt="" />
+                  <!-- <img :src="captchaPath" @click="getCaptcha()" alt="" /> -->
+                  <el-input v-model="captchaPath" disabled> </el-input>
                 </el-col>
               </el-row>
             </el-form-item>
@@ -64,6 +65,7 @@
 
 <script>
 import { getUUID } from "@/utils";
+import { sendMsgDateHand } from "@/utils/index";
 export default {
   data() {
     return {
@@ -104,21 +106,46 @@ export default {
       console.log("11 :>> ", 11);
     },
     async getInfo() {
-      var params = {
-        username: this.dataForm.userName,
-        password: this.dataForm.password,
-        uuid: this.dataForm.uuid,
-        captcha: this.dataForm.captcha,
-      };
-      const data = await this.$API.login.login(params);
-      if (data && data.code === 0) {
-        console.log(data);
-        this.$cookie.set("token", data.token, data.expire || 0);
-        this.$router.replace({ name: "home" }, null, () => {});
-      } else {
+      if (this.dataForm.captcha != this.captchaPath) {
+        this.$notify({
+          title: "请输入正确的验证码",
+          type: "warning",
+        });
         this.getCaptcha();
-        this.$message.error(data.msg);
+      } else {
+        var params = {
+          username: this.dataForm.userName,
+          password: this.dataForm.password,
+          uuid: this.dataForm.uuid,
+          captcha: this.dataForm.captcha,
+        };
+        const data = await this.$API.login.login(params);
+        if (data && data.rsCode === "AAAAAAA" && data.code == 200) {
+          this.$cookie.set("token", data.token, data.expire || 0);
+          var { userMessage } = this.$store.state.user;
+          userMessage.username = data.rsData.username;
+          userMessage.userTypeName = data.rsData.userTypeName;
+          userMessage.userType = data.rsData.userType;
+          let token = data.token;
+          this.$store.commit("user/updateUserInfo", userMessage);
+          this.$store.commit("user/updateToken", token || "");
+          sendMsgDateHand(); //记录一次登录的信息
+          this.redirectPath(); //重定向
+        } else {
+          this.getCaptcha();
+          this.$notify({
+            title: data.message,
+            type: "warning",
+          });
+        }
       }
+    },
+    //重定向页面
+    redirectPath() {
+      //若需要判断用户是否需要某项功能可使用判断
+      this.$router.replace({
+        name: "home",
+      });
     },
     // 获取验证码
     getCaptcha() {
@@ -129,7 +156,7 @@ export default {
       this.$API.login.getCaptcha(parmas).then((data) => {
         if (data && data.code == 0) {
           this.captchaPath = data.data;
-          console.log(data);
+          // console.log(data);
         } else {
           this.$message.error(data.msg);
         }

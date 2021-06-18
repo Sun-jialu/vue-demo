@@ -1,83 +1,93 @@
 <template>
   <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <hamburger
+      :is-active="sidebar.opened"
+      class="hamburger-container"
+      @toggleClick="toggleSideBar"
+    />
 
     <div class="right-menu">
       <div class="right-menu">
-        <template v-if="device!=='mobile'">
+        <template v-if="device !== 'mobile'">
           <screenfull id="screenfull" class="right-menu-item hover-effect" />
         </template>
 
-        <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="hover">
+        <el-dropdown
+          class="avatar-container right-menu-item hover-effect"
+          trigger="hover"
+        >
           <div class="avatar-wrapper">
-           <icon-svg name='admin'></icon-svg>
+            <icon-svg name="admin"></icon-svg>{{username}}
             <i class="el-icon-caret-bottom" />
           </div>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item  @click.native="changePwd()">
-              <span style="display:block;">修改密码</span>
+            <el-dropdown-item @click.native="changePwd()">
+              <span style="display: block">修改密码</span>
             </el-dropdown-item>
-            <el-dropdown-item  @click.native="logout">
-              <span style="display:block;">退出</span>
+            <el-dropdown-item @click.native="logout">
+              <span style="display: block">退出</span>
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
     </div>
-    <NavbarUpdatePassword
-            v-if="updatePassowrdVisible"
-            ref="updatePassowrd">
+    <NavbarUpdatePassword v-if="updatePassowrdVisible" ref="updatePassowrd">
     </NavbarUpdatePassword>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import Hamburger from '@/components/Hamburger'
-import Screenfull from '@/components/Screenfull'
-import { clearLoginInfo } from '@/utils'
+import { mapGetters } from "vuex";
+import Hamburger from "@/components/Hamburger";
+import Screenfull from "@/components/Screenfull";
+import { clearLoginInfo } from "@/utils";
 import NavbarUpdatePassword from "./NavbarUpdatePassword";
 export default {
-  data(){
-    return{
-      updatePassowrdVisible:false
-    }
+  data() {
+    return {
+      updatePassowrdVisible: false,
+      username:"",
+    };
   },
   components: {
-    Hamburger,Screenfull,NavbarUpdatePassword
+    Hamburger,
+    Screenfull,
+    NavbarUpdatePassword,
+  },
+  mounted(){
+    // console.log(`object`, this.$store.state.user)
+    let user=this.$store.state.user
+    this.username=user.userMessage.username
   },
   computed: {
-    ...mapGetters([
-      'sidebar',
-      'device'
-    ])
+    ...mapGetters(["sidebar", "device"]),
   },
   methods: {
     toggleSideBar() {
-      this.$store.dispatch('app/toggleSideBar')
+      this.$store.dispatch("app/toggleSideBar");
     },
-     logout(){
-      this.$confirm(`确定进行退出?`, '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
+    logout() {
+      this.$confirm(`确定进行退出?`, "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
       }).then(() => {
-        this.$API.login.login().then(data => {
-          if (data && data.code === 0) {
-            clearLoginInfo()
-            this.$router.push({name: 'login'})
+        this.$API.login.logOut().then((data) => {
+          if (data && data.code === 200 && data.rsCode == "AAAAAAA") {
+            clearLoginInfo();
+            this.$router.push({ name: "login" });
           }
-        })
-      })
+        });
+      });
     },
-    changePwd(){
-      this.updatePassowrdVisible = true
+    changePwd() {
+      this.updatePassowrdVisible = true;
       this.$nextTick(() => {
-        this.$refs.updatePassowrd.init()
-      })
-    }
-  }
-}
+        this.$refs.updatePassowrd.init();
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -86,7 +96,7 @@ export default {
   overflow: hidden;
   position: relative;
   background: #fff;
-  box-shadow: 0 1px 0px rgba(0,21,41,.08);
+  box-shadow: 0 1px 0px rgba(0, 21, 41, 0.08);
   z-index: 10;
 
   .hamburger-container {
@@ -94,11 +104,11 @@ export default {
     height: 100%;
     float: left;
     cursor: pointer;
-    transition: background .3s;
-    -webkit-tap-highlight-color:transparent;
+    transition: background 0.3s;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
-      background: rgba(0, 0, 0, .025)
+      background: rgba(0, 0, 0, 0.025);
     }
   }
 
@@ -130,10 +140,10 @@ export default {
 
       &.hover-effect {
         cursor: pointer;
-        transition: background .3s;
+        transition: background 0.3s;
 
         &:hover {
-          background: rgba(0, 0, 0, .025)
+          background: rgba(0, 0, 0, 0.025);
         }
       }
     }

@@ -29,7 +29,9 @@ service.interceptors.response.use(response => {
   //   Vue.cookie.delete('token')
   //   router.push({ name: 'login' })
   // }
+  // console.log(`data`, data)
   if (data && data.rsCode != "AAAAAAA") {
+    console.log("request接口错误")
     Notification.error({
       title: "失败",
       message: data.rsMsg || '接口错误',
@@ -38,6 +40,7 @@ service.interceptors.response.use(response => {
   return data
 
 }, error => {
+  console.log("request接口服务错误")
   Notification.error({
     title: "失败",
     message: '接口服务错误',

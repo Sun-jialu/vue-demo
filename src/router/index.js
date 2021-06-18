@@ -5,6 +5,7 @@
  */
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store/index'
 import { isURL } from '@/utils/validate'
 import { clearLoginInfo, treeDataTranslate } from '@/utils'
 
@@ -16,17 +17,8 @@ Vue.use(Router)
 const _import = require('./import-prod')
 import layout from '@/layout'
 
+//本地路由示例
 import { eamShowRoutes, eamHideRoutes } from './eam-route'
-import { samShowRoutes, samHideRoutes } from './sam-route'
-import { hsmShowRoutes, hsmHideRoutes } from './hsm-route'
-import { admShowRoutes, admHideRoutes } from './adm-route'
-import { bemShowRoutes, bemHideRoutes } from "./bem-route"
-import { cardShowRoutes } from './card-route';
-import { Icm_system_ShowRoutes } from './ICM_system_route';
-import { btmShowRoutes, btmHideRoutes } from "./btm-route"
-import { enguShowRoutes, enguHideRoutes } from "./engu-route"
-import { icm_pcmShowRoutes, icm_pcmHideRoutes } from "./icm_pcm-route"
-import { myvueShowRoutes, myvueHideRoutes } from "./myvue-route"
 
 // import { bem1ShowRoutes, bem1HideRoutes } from "./bem1-route"
 
@@ -41,33 +33,10 @@ const home = [
 ]
 const tabShowStaticRoutes = [
   // ...eamShowRoutes,
-  // ...samShowRoutes,
-  // ...hsmShowRoutes,
-  // ...admShowRoutes,
-  // ...cardShowRoutes,
-  // ...Icm_system_ShowRoutes,
-
-  // ...bemShowRoutes,
-  // ...btmShowRoutes,
-  // ...icm_pcmShowRoutes,
-  // ...enguShowRoutes,
-
-  // ...bem1ShowRoutes
-
 ]
 // 自定义路由 不需菜单显示的
 const tabHideStaticRoutes = [
   ...eamHideRoutes,
-  ...samHideRoutes,
-  ...hsmHideRoutes,
-  ...admHideRoutes,
-
-  ...bemHideRoutes,
-  ...btmHideRoutes,
-  ...icm_pcmHideRoutes,
-  ...enguHideRoutes,
-  // ...bem1HideRoutes
-
 ]
 
 // 主入口路由(需嵌套上左右整体布局)
@@ -109,7 +78,13 @@ router.beforeEach((to, from, next) => {
     next()
     NProgress.done()
   } else {
-    API.sys.nav().then(data => {
+    var { userMessage } = store.state.user;
+    // console.log(`userMessage`, userMessage)
+    API.sys.nav({
+      userType: userMessage.userType,
+      userTypeName: userMessage.userTypeName,
+      username: userMessage.username
+    }).then(data => {
       if (data && data.rsCode === 'AAAAAAA') {
         // console.log('data :>> ', data);
         const staitcRouteList = fnResetStaticRoutes(tabShowStaticRoutes)
