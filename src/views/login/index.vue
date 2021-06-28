@@ -130,7 +130,10 @@ export default {
           this.$store.commit("user/updateUserInfo", userMessage);
           this.$store.commit("user/updateToken", token || "");
           sendMsgDateHand(); //记录一次登录的信息
-          this.redirectPath(); //重定向
+          // this.redirectPath(); //重定向
+          this.$router.replace({
+            name: "home",
+          });
         } else {
           this.getCaptcha();
           this.$notify({

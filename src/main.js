@@ -60,9 +60,12 @@ VueAMap.initAMapApiLoader({
   v: '1.4.4', // 高德SDK 版本
   uiVersion: '1.0' // ui版本号，也是需要写
 })
-
+//图片裁剪插件
 import VueCropper from 'vue-cropper'
 Vue.use(VueCropper)
+//滑块验证码插件   在调用组件的情况下该插件可以不用下载的，直接用组件即可
+// import PuzzleVerification from 'vue-puzzle-verification'
+// Vue.use(PuzzleVerification)
 
 new Vue({
   router,

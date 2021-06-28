@@ -50,6 +50,7 @@ export default [
                         { "menuId": 20, "parentId": 0, "parentName": null, "name": "组件1", "url": null, "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
                         { "menuId": 201, "parentId": 20, "parentName": null, "name": "图片裁剪1", "url": 'com-demo1/corp1', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
                         // { "menuId": 202, "parentId": 20, "parentName": null, "name": "图片裁剪2", "url": 'com-demo1/corp2', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 202, "parentId": 20, "parentName": null, "name": "滑块验证码", "url": 'com-demo1/authcode', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
                     ],
                     "rsCode": 'AAAAAAA',
                     "permissions": ["sys:schedule:info", "sys:menu:update", "sys:menu:delete", "sys:config:info", "sys:menu:list", "sys:config:save", "sys:config:update", "sys:schedule:resume", "sys:user:delete", "sys:config:list", "sys:user:update", "sys:role:list", "sys:menu:info", "sys:menu:select", "sys:schedule:update", "sys:schedule:save", "sys:role:select", "sys:user:list", "sys:menu:save", "sys:role:save", "sys:schedule:log", "sys:role:info", "sys:schedule:delete", "sys:role:update", "sys:schedule:list", "sys:user:info", "sys:schedule:run", "sys:config:delete", "sys:role:delete", "sys:user:save", "sys:schedule:pause", "sys:log:list", "sys:oss:all"]
@@ -71,6 +72,7 @@ export default [
                         { "menuId": 16, "parentId": 11, "parentName": null, "name": "系统骨架图", "url": 'com-demo/flow', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
                         { "menuId": 20, "parentId": 0, "parentName": null, "name": "组件1", "url": null, "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
                         { "menuId": 201, "parentId": 20, "parentName": null, "name": "图片裁剪1", "url": 'com-demo1/corp1', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
+                        { "menuId": 202, "parentId": 20, "parentName": null, "name": "滑块验证码", "url": 'com-demo1/authcode', "perms": null, "type": 0, "icon": "shezhi", "orderNum": 0, "open": null, "list": null },
                     ],
                     "rsCode": 'AAAAAAA',
                     "permissions": ["sys:schedule:info", "sys:menu:update", "sys:menu:delete", "sys:config:info", "sys:menu:list", "sys:config:save", "sys:config:update", "sys:schedule:resume", "sys:user:delete", "sys:config:list", "sys:user:update", "sys:role:list", "sys:menu:info", "sys:menu:select", "sys:schedule:update", "sys:schedule:save", "sys:role:select", "sys:user:list", "sys:menu:save", "sys:role:save", "sys:schedule:log", "sys:role:info", "sys:schedule:delete", "sys:role:update", "sys:schedule:list", "sys:user:info", "sys:schedule:run", "sys:config:delete", "sys:role:delete", "sys:user:save", "sys:schedule:pause", "sys:log:list", "sys:oss:all"]

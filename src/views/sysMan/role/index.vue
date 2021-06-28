@@ -97,7 +97,7 @@
 
 <script>
 import AddOrUpdate from "./RoleAddOrUpdate";
-import {roleList} from  "@/api/modules/sysuser.js";
+import { roleList } from "@/api/modules/sysuser.js";
 export default {
   data() {
     return {
@@ -119,6 +119,7 @@ export default {
   activated() {
     this.getDataList();
   },
+  mounted() {},
   methods: {
     // 获取数据列表
     getDataList() {
@@ -150,7 +151,8 @@ export default {
       this.dataListSelections = val;
     },
     // 新增 / 修改
-    addOrUpdateHandle(id) {//通过接口来控制该用户有什么权限页面可以观看
+    addOrUpdateHandle(id) {
+      //通过接口来控制该用户有什么权限页面可以观看
       this.addOrUpdateVisible = true;
       this.$nextTick(() => {
         this.$refs.addOrUpdate.init(id);
