@@ -103,7 +103,7 @@ export default {
     },
     //下载插件
     clickDown() {
-      console.log("11 :>> ", 11);
+      console.log("1111111 :>> ", 11);
     },
     async getInfo() {
       if (this.dataForm.captcha != this.captchaPath) {
