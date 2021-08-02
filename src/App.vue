@@ -11,7 +11,9 @@ export default {
     };
   },
   created() {},
-  mounted() {},
+  mounted() {
+    console.log(`app.vue`)
+  },
 };
 </script>
 <style lang="scss">
